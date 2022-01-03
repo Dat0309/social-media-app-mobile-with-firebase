@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="620dp"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:layout_marginTop="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_avt_dashboard"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/dat"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/tv_name_user_dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trong Dat"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_toRightOf="@id/iv_avt_dashboard"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_more"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_pic_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:src="@drawable/dat"
+        android:scaleType="centerCrop"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_like"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_favorite"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <ImageView
+            android:id="@+id/iv_cmt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_topic"
+            android:layout_toRightOf="@id/iv_like"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <ImageView
+            android:id="@+id/iv_send"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_send"
+            android:layout_toRightOf="@id/iv_cmt"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <ImageView
+            android:id="@+id/iv_save"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_bookmark"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"/>
+        
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6.364 lượt thích"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="status"
+        android:textColor="@color/white"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/tv_count_cmt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xem tất cả 9 bình luận"
+        android:textColor="@color/gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_current_user_avt"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/dat"/>
+        <TextView
+            android:id="@+id/tv_cmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_current_user_avt"
+            android:text="@string/add_comment"
+            android:textColor="@color/gray"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        android:textColor="@color/gray"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"/>
+
+</LinearLayout>
