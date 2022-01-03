@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">social media</string>
+    <string name="home">Trang chủ</string>
+    <string name="notify">Thông báo</string>
+    <string name="add">Thêm</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="profile">Hồ sơ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
