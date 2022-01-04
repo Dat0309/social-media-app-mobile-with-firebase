@@ -59,6 +59,9 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Load data dashboard
+     */
     private void initDashboard() {
         listDasboard = new ArrayList<>();
         listDasboard.add(new Dashboard(R.drawable.dat,R.drawable.dat,"dat0309","HELLO WORLD", "6918", "9", "Vừa xong"));
@@ -73,6 +76,9 @@ public class HomeFragment extends Fragment {
         dashboardRCV.setAdapter(dashboardAdapter);
     }
 
+    /**
+     * Load data story
+     */
     private void initStory() {
         listStory = new ArrayList<>();
         listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
