@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "771466562256",
+    "project_id": "social-media-ac277",
+    "storage_bucket": "social-media-ac277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:771466562256:android:147028ce652247e92eacd5",
+        "android_client_info": {
+          "package_name": "com.dinhtrongdat.socialmedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "771466562256-nb8jiqi8ua8os4494mo8aud0i238bflm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXChPpgNtHgeuWSNVMi_fgKD5lIBLA7e8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "771466562256-nb8jiqi8ua8os4494mo8aud0i238bflm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
