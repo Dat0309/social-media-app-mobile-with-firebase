@@ -40,12 +40,14 @@
                     diagonal:diagonal_position="bottom">
 
                     <com.flaviofaria.kenburnsview.KenBurnsView
+                        android:id="@+id/cover"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/dat" />
+                        android:background="@color/gray"/>
 
                     <TextView
+                        android:id="@+id/tv_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top|left"
@@ -56,6 +58,15 @@
                         android:textColor="@android:color/white"
                         android:textSize="25sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/btn_change_cover"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_photo"
+                        android:layout_gravity="top|right"
+                        android:layout_marginTop="70dp"
+                        android:layout_marginRight="10dp"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -91,16 +102,6 @@
                     </LinearLayout>
 
                 </com.github.florent37.diagonallayout.DiagonalLayout>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/avatar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="190dp"
-                    android:background="@drawable/diagonallayout_circle"
-                    android:elevation="15dp"
-                    android:src="@drawable/dat" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -207,6 +208,27 @@
 
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="115dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="190dp">
+                    <ImageView
+                        android:id="@+id/btn_change_avatar"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_photo"
+                        android:layout_alignBottom="@id/avatar"
+                        android:layout_alignParentRight="true"/>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="@drawable/diagonallayout_circle"
+                        android:elevation="15dp"/>
+
+                </RelativeLayout>
+
                 <TextView
                     android:id="@+id/description"
                     android:layout_width="match_parent"
@@ -214,7 +236,6 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="320dp"
                     android:layout_marginRight="30dp"
-                    android:text="@string/description"
                     android:textColor="@color/gray" />
             </RelativeLayout>
 

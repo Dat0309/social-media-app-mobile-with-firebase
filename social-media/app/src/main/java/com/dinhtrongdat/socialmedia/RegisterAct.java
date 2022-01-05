@@ -86,6 +86,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
         String strPass = edtPass.getEditText().getText().toString().trim();
         String fullName = edtFullName.getEditText().getText().toString().trim();
         String uriImage = "https://firebasestorage.googleapis.com/v0/b/social-media-ac277.appspot.com/o/avatar_user%2Fdefaultuser.png?alt=media&token=abf4f6c2-a5bb-4baf-8b9e-470667d59c39";
+        String uriCover = "https://firebasestorage.googleapis.com/v0/b/social-media-ac277.appspot.com/o/cover_user%2Fdefault_cover.jpg?alt=media&token=fcdab8bd-324f-49da-8568-3f0689432f84";
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -93,7 +94,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(fullName, strEmail, strPass, uriImage);
+                    User user = new User(fullName, strEmail, strPass, uriImage, uriCover,"");
                     String id = task.getResult().getUser().getUid();
                     database.getReference().child("Users").child(id).setValue(user);
                     Toast.makeText(RegisterAct.this, "Success", Toast.LENGTH_SHORT).show();
