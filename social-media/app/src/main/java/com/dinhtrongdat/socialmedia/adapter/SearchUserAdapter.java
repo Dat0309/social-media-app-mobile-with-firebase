@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,7 +18,10 @@ import com.dinhtrongdat.socialmedia.model.Follow;
 import com.dinhtrongdat.socialmedia.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 import java.util.List;
@@ -45,32 +49,58 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.vi
         Glide.with(context).load(user.getAvatar()).into(holder.imgUser);
         holder.txtName.setText(user.getName());
 
-        holder.btnFollow.setOnClickListener(v->{
-            Follow follow = new Follow();
-            follow.setFollowedBy(FirebaseAuth.getInstance().getUid());
-            follow.setFollowedAt(new Date().getTime());
+        FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(user.getUserID())
+                .child("followers")
+                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    holder.btnFollow.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_button_activate));
+                    holder.btnFollow.setText("Following");
+                    holder.btnFollow.setTextColor(context.getResources().getColor(R.color.gray));
+                    holder.btnFollow.setEnabled(false);
+                }
+                else{
+                    holder.btnFollow.setOnClickListener(v->{
+                        Follow follow = new Follow();
+                        follow.setFollowedBy(FirebaseAuth.getInstance().getUid());
+                        follow.setFollowedAt(new Date().getTime());
 
-            FirebaseDatabase.getInstance().getReference()
-                    .child("Users")
-                    .child(user.getUserID())
-                    .child("followers")
-                    .child(FirebaseAuth.getInstance().getUid())
-                    .setValue(follow).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    FirebaseDatabase.getInstance().getReference()
-                            .child("Users")
-                            .child(user.getUserID())
-                            .child("followerCount")
-                            .setValue(user.getFollowerCount() + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            
-                        }
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("Users")
+                                .child(user.getUserID())
+                                .child("followers")
+                                .child(FirebaseAuth.getInstance().getUid())
+                                .setValue(follow).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                FirebaseDatabase.getInstance().getReference()
+                                        .child("Users")
+                                        .child(user.getUserID())
+                                        .child("followerCount")
+                                        .setValue(user.getFollowerCount() + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        holder.btnFollow.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_button_activate));
+                                        holder.btnFollow.setText("Following");
+                                        holder.btnFollow.setTextColor(context.getResources().getColor(R.color.gray));
+                                        holder.btnFollow.setEnabled(false);
+                                    }
+                                });
+                            }
+                        });
                     });
                 }
-            });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
+
+
     }
 
     @Override

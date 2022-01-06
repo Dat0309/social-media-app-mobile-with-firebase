@@ -76,7 +76,9 @@ public class SearchFragment extends Fragment {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     user.setUserID(dataSnapshot.getKey());
-                    listUser.add(user);
+                    if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid())){
+                        listUser.add(user);
+                    }
                 }
                 adapter = new SearchUserAdapter(getContext(), listUser);
                 binding.rcvSearch.setLayoutManager(new LinearLayoutManager(getContext()));
