@@ -24,4 +24,9 @@
     <string name="name_app">Tên người dùng</string>
     <string name="logout">Đăng xuất</string>
     <string name="setting">Cài đặt</string>
+    <string name="photo">Ảnh/Video</string>
+    <string name="tag">Gắn thẻ người khác</string>
+    <string name="emoji">Cảm xúc/Hoạt động</string>
+    <string name="checkin">Check in</string>
+    <string name="stream">Video trực tiếp</string>
 </resources>
