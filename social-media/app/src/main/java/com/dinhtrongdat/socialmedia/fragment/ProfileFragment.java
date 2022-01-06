@@ -1,21 +1,29 @@
 package com.dinhtrongdat.socialmedia.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.dinhtrongdat.socialmedia.LoginAct;
 import com.dinhtrongdat.socialmedia.R;
 import com.dinhtrongdat.socialmedia.model.User;
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -127,9 +135,31 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(intent,UPLOAD_COVER);
                 break;
             case R.id.btn_menu:
-
+                showDialog();
                 break;
         }
+    }
+
+    private void showDialog() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheet_layout);
+
+        LinearLayout logoutLayout = dialog.findViewById(R.id.layout_logout);
+
+        logoutLayout.setOnClickListener(v->{
+            auth.signOut();
+            startActivity(new Intent(getContext(), LoginAct.class));
+            if(dialog != null)
+                dialog.dismiss();
+            getActivity().finish();
+        });
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
     @Override

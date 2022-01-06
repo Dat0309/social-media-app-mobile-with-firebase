@@ -22,4 +22,6 @@
     <string name="fullname">Họ và tên</string>
     <string name="haveacc">Đã có tài khoản? Quay lại đăng nhập</string>
     <string name="name_app">Tên người dùng</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="setting">Cài đặt</string>
 </resources>
