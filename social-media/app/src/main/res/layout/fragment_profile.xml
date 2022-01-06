@@ -137,6 +137,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tv_followers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -251,6 +252,7 @@
                     android:gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/btn_menu"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:src="@drawable/ic_menu" />

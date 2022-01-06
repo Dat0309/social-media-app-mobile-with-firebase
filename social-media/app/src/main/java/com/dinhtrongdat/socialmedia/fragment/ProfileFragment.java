@@ -48,8 +48,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
      */
     KenBurnsView imgCover;
     ImageView imgAvatar;
-    TextView userName, description;
-    ImageView changeAvatar, changeCover;
+    TextView userName, description, followers;
+    ImageView changeAvatar, changeCover, btnMenu;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -79,6 +79,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         changeAvatar = view.findViewById(R.id.btn_change_avatar);
         changeCover = view.findViewById(R.id.btn_change_cover);
         description = view.findViewById(R.id.description);
+        followers = view.findViewById(R.id.tv_followers);
+        btnMenu = view.findViewById(R.id.btn_menu);
 
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -91,8 +93,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     User user = snapshot.getValue(User.class);
                     Glide.with(ProfileFragment.this).load(user.getAvatar()).into(imgAvatar);
                     Glide.with(ProfileFragment.this).load(user.getCover()).into(imgCover);
-                    userName.setText(user.getName());
+                    userName.setText(user.getUserName());
                     description.setText(user.getAbout());
+                    followers.setText(String.valueOf(user.getFollowerCount()));
                 }
             }
 
@@ -104,6 +107,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         changeCover.setOnClickListener(this);
         changeAvatar.setOnClickListener(this);
+        btnMenu.setOnClickListener(this);
     }
 
     @Override
@@ -121,6 +125,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent,UPLOAD_COVER);
+                break;
+            case R.id.btn_menu:
+
                 break;
         }
     }
