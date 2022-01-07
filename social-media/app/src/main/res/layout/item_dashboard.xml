@@ -15,7 +15,6 @@
             android:id="@+id/iv_avt_dashboard"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/dat"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"/>
 
@@ -23,7 +22,6 @@
             android:id="@+id/tv_name_user_dashboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Trong Dat"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="15dp"
@@ -42,7 +40,6 @@
         android:id="@+id/iv_pic_dashboard"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:src="@drawable/dat"
         android:scaleType="centerCrop"/>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -87,7 +84,6 @@
         android:id="@+id/tv_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6.364 lượt thích"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"
@@ -96,7 +92,6 @@
         android:id="@+id/tv_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="status"
         android:textColor="@color/white"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"/>
@@ -105,7 +100,6 @@
         android:id="@+id/tv_count_cmt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Xem tất cả 9 bình luận"
         android:textColor="@color/gray"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"/>
@@ -116,7 +110,7 @@
         android:layout_marginLeft="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/iv_current_user_avt"
+            android:id="@+id/iv_user_cmt"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/dat"/>
@@ -124,7 +118,7 @@
             android:id="@+id/tv_cmt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iv_current_user_avt"
+            android:layout_toRightOf="@id/iv_user_cmt"
             android:text="@string/add_comment"
             android:textColor="@color/gray"
             android:layout_marginLeft="10dp"

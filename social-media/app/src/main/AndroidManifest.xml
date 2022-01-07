@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialMedia">
-        <activity android:name=".RegisterAct"></activity>
+        <activity android:name=".CommentAct"></activity>
+        <activity android:name=".RegisterAct" />
         <activity android:name=".LoginAct" />
         <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreenAct">

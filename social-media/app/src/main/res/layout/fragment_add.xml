@@ -37,17 +37,18 @@
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_post"
                     android:layout_width="70dp"
-                    android:layout_height="50dp"
+                    android:layout_height="40dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/bg_button_activate"
                     android:text="Đăng"
                     android:textAllCaps="false"
                     android:textColor="@color/gray"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
-
+                    android:textStyle="bold"
+                    android:enabled="false"/>
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -56,42 +57,44 @@
             android:layout_height="60dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/iv_avt_dashboard"
+                android:id="@+id/iv_avt_post"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/dat" />
+                android:layout_marginTop="5dp"/>
 
             <TextView
-                android:id="@+id/tv_name_user_dashboard"
+                android:id="@+id/tv_name_user_post"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@id/iv_avt_dashboard"
-                android:text="Trong Dat"
+                android:layout_toRightOf="@id/iv_avt_post"
                 android:textColor="@color/white"
                 android:textSize="15dp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/post_description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Bạn đang nghĩ gì?"
+            android:hint="Bạn đang nghĩ gì?"
+            android:textColorHint="@color/gray"
             android:textColor="@color/gray"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <ImageView
+            android:id="@+id/post_image"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:visibility="gone"/>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layout_add_more"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
