@@ -96,7 +96,7 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    User user = new User(fullName,userName, strEmail, strPass, uriImage, uriCover,"",0);
+                    User user = new User(fullName,userName, strEmail, strPass, uriImage, uriCover,"",0,0);
                     String id = task.getResult().getUser().getUid();
                     database.getReference().child("Users").child(id).setValue(user);
                     Toast.makeText(RegisterAct.this, "Success", Toast.LENGTH_SHORT).show();

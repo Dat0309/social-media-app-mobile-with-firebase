@@ -5,11 +5,12 @@ import java.io.Serializable;
 public class User implements Serializable {
     String name,userName, email, pass, avatar, cover, about, userID;
     long followerCount;
+    long followingCount;
 
     public User() {
     }
 
-    public User(String name,String userName, String email, String pass, String avatar, String cover, String about, long followerCount) {
+    public User(String name,String userName, String email, String pass, String avatar, String cover, String about, long followerCount, long followingCount) {
         this.name = name;
         this.email = email;
         this.userName = userName;
@@ -18,6 +19,7 @@ public class User implements Serializable {
         this.cover = cover;
         this.about = about;
         this.followerCount = followerCount;
+        this.followingCount = followingCount;
     }
 
     public String getName() {
@@ -90,5 +92,13 @@ public class User implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public long getFollowingCount() {
+        return followingCount;
+    }
+
+    public void setFollowingCount(long followingCount) {
+        this.followingCount = followingCount;
     }
 }

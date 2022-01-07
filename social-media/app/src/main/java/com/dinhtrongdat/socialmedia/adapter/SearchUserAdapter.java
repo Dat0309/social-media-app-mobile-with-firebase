@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.dinhtrongdat.socialmedia.R;
 import com.dinhtrongdat.socialmedia.model.Follow;
+import com.dinhtrongdat.socialmedia.model.Following;
 import com.dinhtrongdat.socialmedia.model.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -67,6 +68,10 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.vi
                         follow.setFollowedBy(FirebaseAuth.getInstance().getUid());
                         follow.setFollowedAt(new Date().getTime());
 
+                        Following following = new Following();
+                        following.setFollowing(user.getUserID());
+                        following.setFollowedAt(new Date().getTime());
+
                         FirebaseDatabase.getInstance().getReference()
                                 .child("Users")
                                 .child(user.getUserID())
@@ -90,6 +95,48 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.vi
                                 });
                             }
                         });
+
+                        FirebaseDatabase.getInstance().getReference()
+                                .child("Users")
+                                .child(FirebaseAuth.getInstance().getUid())
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.exists()){
+                                    User curUser = snapshot.getValue(User.class);
+
+                                    FirebaseDatabase.getInstance().getReference()
+                                            .child("Users")
+                                            .child(FirebaseAuth.getInstance().getUid())
+                                            .child("following")
+                                            .child(user.getUserID())
+                                            .setValue(following).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            FirebaseDatabase.getInstance().getReference()
+                                                    .child("Users")
+                                                    .child(FirebaseAuth.getInstance().getUid())
+                                                    .child("followingCount")
+                                                    .setValue(curUser.getFollowingCount()+1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    holder.btnFollow.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.bg_button_activate));
+                                                    holder.btnFollow.setText("Following");
+                                                    holder.btnFollow.setTextColor(context.getResources().getColor(R.color.gray));
+                                                    holder.btnFollow.setEnabled(false);
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                     });
                 }
             }

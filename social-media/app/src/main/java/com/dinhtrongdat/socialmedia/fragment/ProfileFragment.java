@@ -56,7 +56,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
      */
     KenBurnsView imgCover;
     ImageView imgAvatar;
-    TextView userName, description, followers;
+    TextView userName, description, followers, following;
     ImageView changeAvatar, changeCover, btnMenu;
 
     public ProfileFragment() {
@@ -89,6 +89,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         description = view.findViewById(R.id.description);
         followers = view.findViewById(R.id.tv_followers);
         btnMenu = view.findViewById(R.id.btn_menu);
+        following = view.findViewById(R.id.tv_following);
 
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -104,6 +105,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                     userName.setText(user.getUserName());
                     description.setText(user.getAbout());
                     followers.setText(String.valueOf(user.getFollowerCount()));
+                    following.setText(String.valueOf(user.getFollowingCount()));
                 }
             }
 

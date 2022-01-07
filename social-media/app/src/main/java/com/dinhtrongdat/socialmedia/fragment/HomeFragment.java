@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.dinhtrongdat.socialmedia.R;
 import com.dinhtrongdat.socialmedia.adapter.DashboardAdapter;
@@ -76,20 +78,37 @@ public class HomeFragment extends Fragment {
     private void initDashboard() {
         listDasboard = new ArrayList<>();
 
+
         database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(listDasboard.size() != 0)
+                if (listDasboard.size() != 0)
                     listDasboard.clear();
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Post post = dataSnapshot.getValue(Post.class);
                     post.setPostId(dataSnapshot.getKey());
-                    listDasboard.add(post);
+
+                    database.getReference().child("Users").child(auth.getUid()).child("following").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot dataPost : snapshot.getChildren()) {
+                                if (post.getPostedBy().equals(dataPost.getKey()) || post.getPostedBy().equals(auth.getUid())) {
+                                    listDasboard.add(post);
+                                }
+                                dashboardAdapter = new DashboardAdapter(getContext(), listDasboard);
+                                dashboardRCV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+                                dashboardRCV.setNestedScrollingEnabled(false);
+                                dashboardRCV.setAdapter(dashboardAdapter);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
-                dashboardAdapter = new DashboardAdapter(getContext(), listDasboard);
-                dashboardRCV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-                dashboardRCV.setNestedScrollingEnabled(false);
-                dashboardRCV.setAdapter(dashboardAdapter);
+
             }
 
             @Override
@@ -97,6 +116,8 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+
     }
 
     /**
@@ -104,14 +125,14 @@ public class HomeFragment extends Fragment {
      */
     private void initStory() {
         listStory = new ArrayList<>();
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
-        listStory.add(new Story(0,0,R.drawable.dat,"Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
+        listStory.add(new Story(0, 0, R.drawable.dat, "Trong Dat"));
 
         storyAdapter = new StoryAdapter(getContext(), listStory);
         storyRCV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

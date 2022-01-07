@@ -31,4 +31,5 @@ public class Follow implements Serializable {
     public void setFollowedAt(long followedAt) {
         this.followedAt = followedAt;
     }
+
 }
