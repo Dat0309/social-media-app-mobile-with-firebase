@@ -10,4 +10,5 @@
 
     <color name="gray">#838383</color>
     <color name="scrim">#252525</color>
+    <color name="red">#FF1403</color>
 </resources>

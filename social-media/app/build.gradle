@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.dinhtrongdat.socialmedia"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -85,4 +85,10 @@ dependencies {
 
     // Time ago
     implementation 'com.github.marlonlom:timeago:4.0.3'
+
+    // Circle status view
+    implementation 'com.github.3llomi:CircularStatusView:V1.0.2'
+
+    // StoryView
+    implementation 'com.github.OMARIHAMZA:StoryView:1.0.2-alpha'
 }

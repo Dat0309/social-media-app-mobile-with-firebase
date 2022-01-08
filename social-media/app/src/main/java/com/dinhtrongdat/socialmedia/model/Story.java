@@ -1,50 +1,43 @@
 package com.dinhtrongdat.socialmedia.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Story implements Serializable {
-    int story, storyType, profile;
-    String name;
+    private String storyBy;
+    private long storyAt;
+    ArrayList<UserStoriees> stories;
 
     public Story() {
     }
 
-    public Story(int story, int storyType, int profile, String name) {
-        this.story = story;
-        this.storyType = storyType;
-        this.profile = profile;
-        this.name = name;
+    public String getStoryBy() {
+        return storyBy;
     }
 
-    public int getStory() {
-        return story;
+    public void setStoryBy(String storyBy) {
+        this.storyBy = storyBy;
     }
 
-    public void setStory(int story) {
-        this.story = story;
+    public long getStoryAt() {
+        return storyAt;
     }
 
-    public int getStoryType() {
-        return storyType;
+    public void setStoryAt(long storyAt) {
+        this.storyAt = storyAt;
     }
 
-    public void setStoryType(int storyType) {
-        this.storyType = storyType;
+    public ArrayList<UserStoriees> getStories() {
+        return stories;
     }
 
-    public int getProfile() {
-        return profile;
+    public void setStories(ArrayList<UserStoriees> stories) {
+        this.stories = stories;
     }
 
-    public void setProfile(int profile) {
-        this.profile = profile;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public Story(String storyBy, long storyAt, ArrayList<UserStoriees> stories) {
+        this.storyBy = storyBy;
+        this.storyAt = storyAt;
+        this.stories = stories;
     }
 }
