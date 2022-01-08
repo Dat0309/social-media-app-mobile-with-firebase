@@ -169,7 +169,7 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot dataPost : snapshot.getChildren()) {
-                                if (post.getPostedBy().equals(dataPost.getKey()) || post.getPostedBy().equals(auth.getUid())) {
+                                if (post.getPostedBy().equals(dataPost.getKey())) {
                                     listDasboard.add(post);
                                 }
                                 dashboardAdapter = new DashboardAdapter(getContext(), listDasboard);

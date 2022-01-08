@@ -48,7 +48,7 @@ public class SearchUserAdapter extends RecyclerView.Adapter<SearchUserAdapter.vi
         User user = mdata.get(position);
 
         Glide.with(context).load(user.getAvatar()).into(holder.imgUser);
-        holder.txtName.setText(user.getName());
+        holder.txtName.setText(user.getUserName());
 
         FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(user.getUserID())
