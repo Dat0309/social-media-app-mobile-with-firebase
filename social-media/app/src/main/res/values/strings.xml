@@ -29,4 +29,6 @@
     <string name="emoji">Cảm xúc/Hoạt động</string>
     <string name="checkin">Check in</string>
     <string name="stream">Video trực tiếp</string>
+    <string name="save">Lưu bài viết</string>
+    <string name="hide">Ẩn bài viết</string>
 </resources>

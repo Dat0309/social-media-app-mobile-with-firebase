@@ -1,13 +1,19 @@
 package com.dinhtrongdat.socialmedia.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +25,7 @@ import com.dinhtrongdat.socialmedia.R;
 import com.dinhtrongdat.socialmedia.model.Dashboard;
 import com.dinhtrongdat.socialmedia.model.Post;
 import com.dinhtrongdat.socialmedia.model.User;
+import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -60,6 +67,9 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
             holder.txtStatus.setVisibility(View.GONE);
         else
             holder.txtStatus.setText(post.getPosrDescription());
+
+        String time = TimeAgo.using(post.getPostedAt());
+        holder.txtTime.setText(time);
 
         FirebaseDatabase.getInstance().getReference().child("Users")
                 .child(post.getPostedBy()).addValueEventListener(new ValueEventListener() {
@@ -160,6 +170,36 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });
+
+        holder.btnMore.setOnClickListener(v->{
+            showDialog();
+        });
+
+        holder.txtCmt.setOnClickListener(v->{
+            Intent intent = new Intent(context, CommentAct.class);
+            intent.putExtra("post", post);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
+
+        holder.txtCmtCount.setOnClickListener(v->{
+            Intent intent = new Intent(context, CommentAct.class);
+            intent.putExtra("post", post);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
+    }
+
+    private void showDialog() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.bottomsheet_dashboard);
+
+        dialog.show();
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
     }
 
     @Override
@@ -170,8 +210,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
     public class viewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgAvatar, imgPicture, imgAvatarCmt;
-        TextView txtName, txtLike, txtStatus, txtCmtCount, txtTime;
-        ImageView btnLike, btnCmt, btnShare;
+        TextView txtName, txtLike, txtStatus, txtCmtCount, txtTime, txtCmt;
+        ImageView btnLike, btnCmt, btnShare, btnMore;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -187,6 +227,8 @@ public class DashboardAdapter extends RecyclerView.Adapter<DashboardAdapter.view
             btnCmt = itemView.findViewById(R.id.iv_cmt);
             btnShare = itemView.findViewById(R.id.iv_send);
             imgAvatarCmt = itemView.findViewById(R.id.iv_user_cmt);
+            btnMore = itemView.findViewById(R.id.iv_more_dashboard);
+            txtCmt = itemView.findViewById(R.id.tv_cmt);
         }
     }
 }
